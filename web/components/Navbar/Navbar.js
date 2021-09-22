@@ -1,9 +1,19 @@
 import Image from "next/image";
 import { SearchIcon, ShoppingCartIcon } from "@heroicons/react/solid";
+import Link from "next/link";
 export function Navbar() {
   return (
     <div className="px-24 py-5 flex justify-between items-center">
-      <Image src="/logo.png" alt="logo" width={78} height={50} />
+      <Link href="/">
+        <Image
+          src="/logo.png"
+          alt="logo"
+          width={78}
+          height={50}
+          className="cursor-pointer"
+        />
+      </Link>
+
       <div className="flex space-x-2 justify-between">
         <button className="font-semibold text-gray-600 px-5 py-1 rounded-full hover:bg-gray-50">
           Mattress

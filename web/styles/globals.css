@@ -17,3 +17,7 @@ a {
 * {
   box-sizing: border-box;
 }
+.map-container {
+  height: 500px;
+  width: 100%;
+}
