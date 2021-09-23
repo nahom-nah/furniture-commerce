@@ -40,7 +40,7 @@ export default function Home() {
       <div>
         <Navbar />
         <section
-          className="pt-8 space-y-6"
+          className="mt-20 space-y-6"
           style={{
             backgroundImage: "url(bg-t3.png)",
             backgroundRepeat: "no-repeat",

@@ -3,7 +3,7 @@ import { SearchIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 export function Navbar() {
   return (
-    <div className="px-24 py-5 flex justify-between items-center">
+    <div className="px-24 pt-5 z-50 flex top-0 w-full bg-white justify-between items-center fixed ">
       <Link href="/">
         <Image
           src="/logo.png"
