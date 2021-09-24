@@ -1,41 +1,46 @@
-/*eslint-disable*/
+import {
+  ArrowLeftIcon,
+  DesktopComputerIcon,
+  MenuIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/solid";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { Link } from "react-router-dom";
-
-import NotificationDropdown from "./../Dropdowns/NotificationDropdown.js";
-import UserDropdown from "./../Dropdowns/UserDropdown.js";
-
+import { useRouter } from "next/router";
+import adminRoutes from "./../../pages/[routes]";
 export default function Sidebar() {
+  const router = useRouter();
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
-        <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
-          {/* Toggler */}
+      <nav className="md:left-0 bg-white md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-md   flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 ">
+        <div className="md:flex-col   md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           <button
             className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
             type="button"
             onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
           >
-            <i className="fas fa-bars"></i>
+            <MenuIcon className="h-5 text-gray-500" />
           </button>
-          {/* Brand */}
           <Link
-            className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
+            className="md:block cursor-pointer text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            href="/"
           >
-            h-mart
+            <div className="flex">
+              {" "}
+              <Image
+                src="/logo.png"
+                width={60}
+                height={40}
+                className="cursor-pointer"
+              />
+            </div>
           </Link>
-          {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
-            <li className="inline-block relative">
-              <NotificationDropdown />
-            </li>
-            <li className="inline-block relative">
-              <UserDropdown />
-            </li>
+            <li className="inline-block relative">one</li>
+            <li className="inline-block relative">two</li>
           </ul>
-          {/* Collapse */}
           <div
             className={
               "md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded " +
@@ -48,23 +53,23 @@ export default function Sidebar() {
                 <div className="w-6/12">
                   <Link
                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    to="/"
+                    href="/"
                   >
                     Notus React
                   </Link>
-                </div>
+                </div>{" "}
                 <div className="w-6/12 flex justify-end">
                   <button
                     type="button"
-                    className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+                    className="cursor-pointer text-black opacity-50   px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
                     onClick={() => setCollapseShow("hidden")}
                   >
-                    <i className="fas fa-times"></i>
+                    <ArrowLeftIcon className="h-5 text-gray-500" />
                   </button>
                 </div>
               </div>
             </div>
-            {/* Form */}
+
             <form className="mt-6 mb-4 md:hidden">
               <div className="mb-3 pt-0">
                 <input
@@ -74,151 +79,30 @@ export default function Sidebar() {
                 />
               </div>
             </form>
-
-            {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
+            <h6 className="md:min-w-full  text-sm text-gray-500  uppercase block pt-1 pb-4 no-underline">
+              Main
             </h6>
-            {/* Navigation */}
-
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/dashboard"
-                >
-                  <i
-                    className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Dashboard
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/settings"
-                >
-                  <i
-                    className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/settings") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Settings
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/items") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/items"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/items") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Items
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/sellers") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/sellers"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/sellers") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  seller
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/brokers") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/brokers"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/brokers") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  brokers
-                </Link>
-              </li>
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/reports") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/reports"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/reports") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Reports
-                </Link>
-              </li>
+              {adminRoutes.map((el) => (
+                <li className="items-center" key={el.label}>
+                  <Link href={el.path}>
+                    <button
+                      className={
+                        "text-md  text-sm py-3 px-2  flex space-x-2  font-semibold  items-center w-full " +
+                        (router.pathname === el.path
+                          ? "bg-blue-50 text-blue-500 hover:bg-blue-100"
+                          : "bg-white hover:bg-blue-100")
+                      }
+                    >
+                      <DesktopComputerIcon className="h-5 text-gray-600" />
+                      <div>{el.label}</div>
+                    </button>
+                  </Link>
+                </li>
+              ))}
             </ul>
-
-            {/* Divider */}
-
-            {/* Divider */}
           </div>
         </div>
       </nav>

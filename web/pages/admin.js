@@ -1,3 +1,9 @@
+import Layout from "../layouts/AdminLayout";
+
 export default function Admin() {
-  return <div> this is from admin...</div>;
+  return (
+    <div>
+      <Layout />
+    </div>
+  );
 }
