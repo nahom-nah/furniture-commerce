@@ -3,22 +3,15 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const typeDefs = require("./graphql/typeDefs");
+const resolvers = require("./graphql/resolvers");
 const {
   ApolloServerPluginLandingPageGraphQLPlayground,
 } = require("apollo-server-core");
 
 dotenv.config({ path: "./.env" });
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-const resolvers = {
-  Query: {
-    hello: () => console.log("hello"),
-  },
-};
+require("./config/database");
 const startApolloServer = async (typeDefs, resolvers) => {
   const app = express();
   app.use(cors());
