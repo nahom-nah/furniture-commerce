@@ -1,8 +1,23 @@
-const catchAsync = require("./../../utils/catchAsync");
+const catchAsync = require(". /../../utils/catchAsync");
+const fs = require("fs");
+const path = require("path");
+const filter = require("./../../utils/filter");
 
 exports.getAll = function (Model) {
-  return catchAsync(async () => {
-    const items = await Model.find().select("-__v");
+  return catchAsync(async (_, args, context, info) => {
+    let ans = {};
+    let fans = {};
+    if (args.input.sort) {
+      args.input.sort.map((el) => {
+        ans[el.field] = el.order;
+      });
+    }
+
+    if (args.input.field) {
+      fans = filter(args.input.filter.field);
+    }
+
+    const items = await Model.find(fans).where().select("-__v").sort(ans);
 
     return items;
   });
@@ -17,8 +32,8 @@ exports.getOne = (Model) => {
 
 exports.create = (Model) => {
   return catchAsync(async (_, args, context, info) => {
-    const { name, description, price, status, quantity } = args.input;
-    console.log(name);
+    const { name, description, price, status, quantity, file } = args.input;
+    console.log(args.input);
     const item = await Model.create({
       name,
       description,

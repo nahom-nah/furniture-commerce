@@ -6,7 +6,7 @@ module.exports = gql`
     description: String!
     price: Int!
     quantity: Int!
-    image: [String]
+    image: [File]
     status: String!
     is_deleted: Boolean!
     created_on: String!
@@ -14,15 +14,55 @@ module.exports = gql`
 
     updated_timestamp: String!
   }
+  enum sortOrder {
+    ASC
+    DESC
+  }
+  enum sortableFields {
+    name
+    price
+  }
+  input Sort {
+    field: sortableFields
+    order: sortOrder = ASC
+  }
+
+  input stringFilter {
+    equals: String
+    contains: String
+  }
+  input intFilter {
+    eq: Int
+    gt: Int
+    gte: Int
+    lt: Int
+    lte: Int
+  }
+  input filterField {
+    name: stringFilter
+    price: intFilter
+  }
+  input Filter {
+    field: filterField
+  }
+  input fsOperations {
+    sort: [Sort]
+    filter: Filter
+  }
   type Query {
     hello: String
     getItem(id: ID!): Item
-    getItems: [Item]!
+    getItems(input: fsOperations): [Item]!
+  }
+  scalar Upload
+  type File {
+    url: String!
   }
   input itemInput {
     name: String!
     description: String!
     price: Int!
+    Image: Upload!
     quantity: Int!
     status: String
   }
