@@ -10,7 +10,7 @@ export default function Layout({ children }) {
         <div className=" relative md:ml-64 ">
           <AdminNavbar />
 
-          <div className="px-4 bg-adminbg mt-1  md:px-5 block mx-auto w-full ">
+          <div className="px-4 py-10 bg-adminbg mt-1  md:px-5 block mx-auto w-full ">
             <HeaderStats />
             {children}
           </div>

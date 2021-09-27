@@ -52,7 +52,7 @@ module.exports = gql`
   type Query {
     hello: String
     getItem(id: ID!): Item
-    getItems(input: fsOperations): [Item]!
+    getItems(input: fsOperations = {}): [Item]!
   }
   scalar Upload
   type File {
@@ -74,9 +74,20 @@ module.exports = gql`
     status: String
   }
 
+  type User {
+    username: String!
+    email: String!
+    first_name: String
+    last_name: String
+  }
+  input loginInput {
+    email: String!
+    password: String!
+  }
   type Mutation {
     createItem(input: itemInput): Item!
     updateItem(id: ID!, body: itemUpdate): Item!
     deleteItem(id: ID!): Boolean!
+    login(input: loginInput): String!
   }
 `;

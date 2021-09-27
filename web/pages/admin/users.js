@@ -6,14 +6,25 @@ import {
   PlusIcon,
 } from "@heroicons/react/solid";
 import Image from "next/image";
+import Register from "../../components/add/register";
+import { useState } from "react";
 export default function Users({ color }) {
+  const [hide, setHide] = useState(true);
+  const handleHide = () => {
+    setHide(!hide);
+  };
   return (
     <div>
       <Layout>
+        {" "}
+        <Register hide={hide} handleHide={handleHide} />
         <div className="px-12">
           <div className="flex justify-between items-center">
             <div className="text-xl font-bold text-gray-800">Users</div>
-            <button className="bg-blue-600 flex justify-around items-center space-x-4 text-white font-semibold px-6 rounded-full py-2">
+            <button
+              onClick={handleHide}
+              className="bg-blue-600 flex justify-around items-center space-x-4 text-white font-semibold px-6 rounded-full py-2"
+            >
               <PlusIcon className="h-5 text-white" />
               Add New Items
             </button>

@@ -14,11 +14,20 @@ dotenv.config({ path: "./.env" });
 require("./config/database");
 const startApolloServer = async (typeDefs, resolvers) => {
   const app = express();
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
   app.use(morgan("dev"));
+
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
+    // context: ({ req, res }) => {
+    //   req, res;
+    // },
     // plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
   });
 

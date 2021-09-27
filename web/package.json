@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.13",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@heroicons/react": "^1.0.4",
+    "graphql": "^15.6.0",
     "mapbox-gl": "^2.4.1",
     "next": "11.1.2",
     "react": "17.0.2",
