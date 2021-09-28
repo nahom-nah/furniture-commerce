@@ -79,15 +79,26 @@ module.exports = gql`
     email: String!
     first_name: String
     last_name: String
+    token: String!
+
+    id: ID!
   }
   input loginInput {
     email: String!
     password: String!
   }
+  input registerInput {
+    email: String!
+    username: String!
+    password: String!
+    first_name: String
+    last_name: String
+  }
   type Mutation {
     createItem(input: itemInput): Item!
     updateItem(id: ID!, body: itemUpdate): Item!
     deleteItem(id: ID!): Boolean!
-    login(input: loginInput): String!
+    login(input: loginInput): User!
+    register(input: registerInput): String!
   }
 `;
